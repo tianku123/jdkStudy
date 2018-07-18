@@ -93,7 +93,10 @@ public class ForkJoinSumCalculator extends RecursiveTask<Long> {
          * 这种fork join的方式反而更慢，因为上面都是流操作，不需要把流转为long[]
          * LongStream.rangeClosed(1, n).toArray() 这里的toArray影响了性能
          */
-        long result = ParallelTest.measureSumPerf(ForkJoinSumCalculator::forkJoinSum, 10_000_000);
-        System.out.println(result);
+        times = ParallelTest.measureSumPerf(ForkJoinSumCalculator::forkJoinSum, 10_000_000);
+        System.out.println(times);
+        System.out.println(ParallelTest.sequentialSum_long(10_000_000));
+        System.out.println(ParallelTest.parallelSum_long(10_000_000));
+        System.out.println(ForkJoinSumCalculator.forkJoinSum(10_000_000));
     }
 }

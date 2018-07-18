@@ -17,7 +17,7 @@ public class ParallelTest {
             long start = System.nanoTime();
             long sum = adder.apply(n);
             long duration = (System.nanoTime() - start) / 1_000_000;
-            System.out.println("Result: " + sum);
+//            System.out.println("Result: " + sum);
             if (duration < fastest) fastest = duration;
         }
         return fastest;
