@@ -1,6 +1,7 @@
 package rh.study.jdk8.lambda;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.IntPredicate;
@@ -94,6 +95,13 @@ public class LambdaTest1 {
 
 //        IntPredicate evenNumbers = (int i) -> i % 2 == 0;
 //        evenNumbers.test(1000);
+        /**
+         * 排序
+         */
+        System.out.println(appleList);
+//        appleList.sort((o1, o2) -> {if (o1.getWeight() - o2.getWeight()>0) return 1; return -1;});
+        appleList.sort(Comparator.comparingDouble(Apple::getWeight));
+        System.out.println(appleList);
     }
 }
 

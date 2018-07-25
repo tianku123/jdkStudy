@@ -54,7 +54,23 @@ public class CollectorsTest {
                     }
                 }*/
                 )));
-        System.out.println(dishesByTypeCaloricLevel);
+        System.out.println("多级分组:" + dishesByTypeCaloricLevel);
+        /**
+         * 多级分组 计数  select count(1) from table group by type,level
+         */
+        Map<Dish.Type, Map<Dish.CaloricLevel, Long>> dishesByTypeCaloricLevelCount = menus.parallelStream().collect(Collectors.groupingBy(Dish::getType,
+                Collectors.groupingBy(Dish::getCaloricLevel, Collectors.counting()
+                        /*dish -> {
+                    if (dish.getCalories() <= 400) {
+                        return Dish.CaloricLevel.DIET;
+                    } else if (dish.getCalories() <= 700) {
+                        return Dish.CaloricLevel.NORMAL;
+                    } else {
+                        return Dish.CaloricLevel.FAT;
+                    }
+                }*/
+                )));
+        System.out.println("多级分组计数:" + dishesByTypeCaloricLevelCount);
 
         /**
          * 分组统计数量
